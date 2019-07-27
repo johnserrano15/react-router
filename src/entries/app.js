@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { render } from 'react-dom';
-import Home from '../pages/containers/home';
+import Home from '../pages/components/home';
+import Videos from '../pages/containers/Videos';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reducer from '../reducers/index';
@@ -8,7 +9,7 @@ import { Map as map } from 'immutable';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from '../pages/components/Header'
 
 const logger_ = ({getState, dispatch }) => next => action => {
@@ -35,11 +36,12 @@ const homeContainer = document.getElementById('home-container')
 
 
 render(
-  <Router basename='/videos'>
+  <Router>
     <Provider store={store}>
       <Fragment>
         <Header />
-        <Home />
+        <Route exact path="/" component={Home} />
+        <Route exact path='/videos' component={Videos}/>
       </Fragment>
     </Provider>
   </Router>
