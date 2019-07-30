@@ -26,6 +26,7 @@ class Home extends Component {
     // this.setState({
     //   modalVisible: false,
     // })
+    this.props.history.goBack()
     this.props.actions.closeModal()
   }
   render() {
