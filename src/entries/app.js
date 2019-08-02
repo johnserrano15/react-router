@@ -9,8 +9,9 @@ import { Map as map } from 'immutable';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Header from '../pages/components/Header'
+import NotFound from '../pages/components/not-found'
 
 const logger_ = ({getState, dispatch }) => next => action => {
   console.log('este es mi viejo estado', getState().toJS())
@@ -40,8 +41,12 @@ render(
     <Provider store={store}>
       <Fragment>
         <Header />
-        <Route exact path="/" component={Home} />
-        <Route exact path='/videos' component={Videos}/>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path='/videos' component={Videos}/>
+          <Redirect from='/v' to='/videos'/>
+          <Route component={NotFound} />
+        </Switch>
       </Fragment>
     </Provider>
   </Router>
