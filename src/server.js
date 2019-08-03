@@ -15,7 +15,7 @@ app.get('*', (req, res) => {
     <StaticRouter
       location={req.url}
       context={{
-        name: 'leonidas'
+        name: 'John Serrano'
       }}
     >
       <App />
